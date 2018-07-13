@@ -25,6 +25,16 @@ class Volunteer
       volunteers
   end
 
+  def self.find(id)
+     found_volunteer = nil
+     Volunteer.all().each() do |volunteer|
+       if volunteer.id().==(id)
+         found_volunteer = volunteer
+       end
+     end
+     found_volunteer
+  end
+
   def save
     result = DB.exec("INSERT INTO volunteers (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
