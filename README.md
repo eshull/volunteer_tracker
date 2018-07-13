@@ -15,10 +15,17 @@ A site that organizes projects by coordinating volunteers
 
 ## Setup/Contribution Requirements
 
-1. Clone the repo
-1. Make a new branch
-1. Commit and push your changes
-1. Create a PR
+* Clone the repo
+* Make a new branch
+* Commit and push your changes
+* Create a PR
+### Database Setup
+* First run this code in the terminal to create a new database from the file in repo: <br> createdb [volunteer_tracker]
+
+* Then run this code to establish the database from the file into the created one: <br> psql [volunteer_tracker] < database_backup.sql
+* Then run this code in the terminal to create a test database from the one created: <br> createdb -T [volunteer_tracker] [volunteer_tracker_test]
+
+
 
 ## Technologies Used
 
