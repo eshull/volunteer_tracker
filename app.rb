@@ -22,3 +22,8 @@ post ('/') do
   @projects = Project.all
   erb(:index)
 end
+
+get ('/project/:id') do
+  @project = params.fetch("id")
+  erb(:project)
+end
