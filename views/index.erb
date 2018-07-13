@@ -1,7 +1,12 @@
 <h1>Welcome to our Non-Profit Projects Site</h1>
 
+<% @projects.each do |project| %>
+  <p><% project.title %></p>
+  <a href='/project/<%= project.id %>'><%= project.title %></a>
+<% end %>
+
 <form action="/" method="post">
   <label for="new_project">Add a New Project</label>
   <input type="text" name="new_project">
-  <button type="submit" class="btn btn-info" name="button">Add</button>
+  <button type="submit" class="btn btn-info">Add</button>
 </form>
