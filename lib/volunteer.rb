@@ -8,4 +8,8 @@ class Volunteer
     @project_id = params.fetch(:project_id)
     @id = params.fetch(:id)
   end
+
+  def ==(volunteer)
+    self.name().==(volunteer.name()).&(self.id().==(volunteer.id()))
+  end
 end
