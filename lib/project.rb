@@ -8,4 +8,15 @@ class Project
     @id = params.fetch(:id)
   end
 
+  def save
+    result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
+    @id = result.first().fetch("id").to_i()
+  end
+
+  def ==(project)
+    self.title().==(project.title()).&(self.id().==(project.id()))
+  end
+
+
+
 end
