@@ -28,9 +28,9 @@ A site that organizes projects by coordinating volunteers
 * Capybara
 
 ## Specs/Steps
-* The homepage of the app
-
-
+* As an employee, I want to view, add, update and delete projects.
+* As an employee, I want to view and add volunteers.
+* As an employee, I want to add volunteers to a project.
 
 ## License
 
