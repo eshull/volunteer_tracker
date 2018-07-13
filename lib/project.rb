@@ -4,8 +4,13 @@ class Project
   attr_accessor :title
 
   def initialize(params)
+    params = default.merge(params)
     @title = params.fetch(:title)
     @id = params.fetch(:id)
+  end
+
+  def default
+    {:id=>0,:title => "none"}
   end
 
   def self.all
