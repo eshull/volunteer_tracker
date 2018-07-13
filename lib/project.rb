@@ -20,6 +20,16 @@ class Project
       projects
   end
 
+  def self.find(id)
+     found_project = nil
+     Project.all().each() do |project|
+       if project.id().==(id)
+         found_project = project
+       end
+   end
+ found_project
+end
+
   def save
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
