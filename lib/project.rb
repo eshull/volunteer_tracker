@@ -37,14 +37,15 @@ end
 
   def volunteers
     list_volunteers = []
-    volunteers = DB.exec("SELECT * FROM projects WHERE volunteer_id = #{self.id()};")
+    volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{self.id()};")
     volunteers.each() do |volunteer|
+      id = volunteer.fetch("id")
       name = volunteer.fetch("name")
-      volunteer_id = volunteer.fetch("project_id").to_i()
-      list_volunteers.push(Project.new({:name => name, :project_id => volunteer_id}))
+      project_id = volunteer.fetch("project_id").to_i()
+      list_volunteers.push(Volunteer.new({:id => id, :name => name, :project_id => project_id}))
     end
     list_volunteers
-end
+  end
 
   def ==(project)
     self.title().==(project.title()).&(self.id().==(project.id()))

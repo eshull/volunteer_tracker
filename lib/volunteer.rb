@@ -1,7 +1,7 @@
 class Volunteer
 
-  attr_reader :id
-  attr_accessor :name, :project_id
+  attr_reader :id, :project_id
+  attr_accessor :name
 
   def initialize(params)
     params = default.merge(params)
@@ -13,6 +13,7 @@ class Volunteer
   def default
     {:id=>0,:name => "none", :title => "none", :project_id => 0}
   end
+
   def self.all
       returned_volunteers = DB.exec("SELECT * FROM volunteers;")
       volunteers = []
@@ -35,8 +36,9 @@ class Volunteer
      found_volunteer
   end
 
+
   def save
-    result = DB.exec("INSERT INTO volunteers (name) VALUES ('#{@name}') RETURNING id;")
+    result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
 
