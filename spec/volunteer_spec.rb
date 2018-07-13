@@ -36,7 +36,7 @@ describe Volunteer do
         expect(Volunteer.all).to eq [volunteer1]
       end
     end
-
+ 
   #   it 'returns all volunteers' do
   #     volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
   #     volunteer1.save
