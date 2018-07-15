@@ -1,8 +1,9 @@
 <h1>The <%=@project.title%> Project</h1>
+
+<p>We are so excited </p>
+
 <a href="/">Return to Home</a>
 
-<form action="/project/<%= @project.id %>" method="post">
-  <label for="edit_project">Edit the Project: <%= @project.title %></label>
-  <input type="text" name="edit_project">
-  <button type="submit" class="btn btn-info">Update Project</button>
-</form>
+
+
+<a href="/project/<%=@project.id%>/edit">Edit this project</a>
