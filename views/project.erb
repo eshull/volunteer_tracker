@@ -2,8 +2,28 @@
 
 <p>We are so excited </p>
 
+<h2>Here are the current volunteers on this project:</h2>
+
 <a href="/">Return to Home</a>
 
+<% if @project.volunteers().any?() %>
+  <h3>Here are the current volunteers on this Project:</h3>
+
+  <ul>
+    <% @project.volunteers().each() do |volunteer| %>
+      <li><%= volunteer.name() %> </li>
+    <% end %>
+  </ul>
+
+  <% else %>
+    <p>There are no volunteers on this Project.</p>
+  <% end %>
+
+  <form action="/project/<%= @project.id %>" method="post">
+    <label for="new_volunteer">Add a Volunteer to this Project:</label>
+    <input type="text" name="new_volunteer">
+    <button type="submit" value="<%= @project.id %>" class="btn btn-info">Add Volunteer</button>
+  </form>
 
 
 <a href="/project/<%=@project.id%>/edit">Edit this project</a>

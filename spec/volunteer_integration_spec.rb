@@ -48,20 +48,31 @@ describe 'the project delete path', {:type => :feature} do
     expect(page).not_to have_content("Teaching Kids to Code")
   end
 end
-#
-# # The user should be able to click on a project detail page and see a list of all volunteers working on that project. The user should be able to click on a volunteer to see the volunteer's detail page.
-#
-# describe 'the volunteer detail page path', {:type => :feature} do
-#   it 'shows a volunteer detail page' do
-#     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-#     test_project.save
-#     project_id = test_project.id.to_i
-#     test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
-#     test_volunteer.save
-#     visit "/projects/#{project_id}"
-#     click_link('Jasmine')
-#     fill_in('name', :with => 'Jane')
-#     click_button('Update Volunteer')
-#     expect(page).to have_content('Jane')
-#   end
-# end
+
+describe('adding volunteers to a project', {:type => :feature}) do
+  it('allows a user to add a volunteer to a project') do
+    test_project = Project.new({:title => 'School Project'})
+    test_project.save()
+    visit("/project/#{test_project.id()}")
+    fill_in("new_volunteer", {:with => "Jasmine"})
+    click_button("Add Volunteer")
+    expect(page).to have_content("Jasmine")
+  end
+end
+
+# The user should be able to click on a project detail page and see a list of all volunteers working on that project. The user should be able to click on a volunteer to see the volunteer's detail page.
+
+describe 'the volunteer detail page path', {:type => :feature} do
+  it 'shows a volunteer detail page' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
+    test_volunteer.save
+    visit "/project/#{project_id}"
+    click_link('Jasmine')
+    fill_in('name', :with => 'Jane')
+    click_button('Update Volunteer')
+    expect(page).to have_content('Jane')
+  end
+end

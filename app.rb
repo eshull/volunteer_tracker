@@ -23,16 +23,22 @@ post ('/') do
 end
 
 get ('/project/:id') do
-  @project = params.fetch("id")
-  new_project = Project.find(params.fetch("id").to_i())
-  new_project.save
-  @project = new_project
+  @project = Project.find(params.fetch("id").to_i())
+  erb(:project)
+end
+
+post ('/project/:id') do
+  @project = Project.find(params.fetch("id").to_i)
+  # @project = Project.find(params.fetch("id").to_i())
+  project_id = params.fetch("id").to_i
+  volunteer_name = params.fetch("new_volunteer")
+  new_volunteer = Volunteer.new({:name => volunteer_name, :project_id => project_id})
+  new_volunteer.save
+  @volunteers = Volunteer.all
   erb(:project)
 end
 
 patch ('/project/:id/edit') do
-  # @project = params.fetch("id")
-  # @project = Project.find(params.fetch("id").to_i())d
   new_title = params.fetch("edit_project")
   new_project = Project.new({:title => new_title, :id => @project})
   new_project.save
@@ -42,9 +48,6 @@ end
 
 get ("/project/:id/edit") do
   @project = Project.find(params.fetch("id").to_i())
-  # id = params.fetch("id").to_i()
-  # @project = Project.find(id)
-  # binding.pry
   erb(:project_edit)
 end
 
