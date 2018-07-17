@@ -57,3 +57,18 @@ delete ("/project/:id/edit") do
   @projects = Project.all()
   erb(:index)
 end
+
+get ("/volunteer/:id") do
+    @volunteer = Volunteer.find(params.fetch("id").to_i())
+  erb(:volunteer)
+end
+
+patch ('/volunteer/:id') do
+  volunteer_id = Volunteer.find(params.fetch("id").to_i())
+  new_name = params.fetch("edit_volunteer")
+  binding.pry
+  new_volunteer = Volunteer.new({:name => new_name, :id => volunteer_id})
+  new_volunteer.save
+  @volunteer = new_volunteer
+  erb(:volunteer)
+end
